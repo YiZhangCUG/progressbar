@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 	int loop_size = 200;
 
 	// 声明一个进度条 同时设置其长度与名称
-	gctl::ProgressBar bar1(loop_size,"bar1");
+	ProgressBar bar1(loop_size,"bar1");
 	// 在循环中更新进度条 使用usleep函数放缓循环间隔至0.1秒
 	for (int i = 0; i < loop_size; i++)
 	{
@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	}
 
 	// 声明第二个进度条 并设置更新间隔为10次 即大约每10%更新一次进度条
-	gctl::ProgressBar bar2(loop_size,"bar2");
+	ProgressBar bar2(loop_size,"bar2");
 	bar2.SetFrequencyUpdate(10);
 	// 查看第二个进度条
 	for (int i = 0; i < loop_size; i++)
@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
 	}
 
 	// 声明第三个进度条 并设置已完成进度条符号为> 未完成进度条符号为空格
-	gctl::ProgressBar bar3(loop_size,"bar3");
+	ProgressBar bar3(loop_size,"bar3");
 	bar3.SetStyle(">"," ");
 	// 查看第三个进度条
 	for (int i = 0; i < loop_size; i++)

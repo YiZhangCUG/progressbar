@@ -1,8 +1,8 @@
 #include "progressbar.h"
 
-gctl::ProgressBar::ProgressBar(){}
+ProgressBar::ProgressBar(){}
 
-gctl::ProgressBar::ProgressBar(unsigned long n_, const char* description_, std::ostream& out_){
+ProgressBar::ProgressBar(unsigned long n_, const char* description_, std::ostream& out_){
     
     n = n_;
     frequency_update = n_;
@@ -15,7 +15,7 @@ gctl::ProgressBar::ProgressBar(unsigned long n_, const char* description_, std::
 
 }
 
-void gctl::ProgressBar::SetFrequencyUpdate(unsigned long frequency_update_){
+void ProgressBar::SetFrequencyUpdate(unsigned long frequency_update_){
     
     if(frequency_update_ > n){
         frequency_update = n;    // prevents crash if freq_updates_ > n_
@@ -25,13 +25,13 @@ void gctl::ProgressBar::SetFrequencyUpdate(unsigned long frequency_update_){
     }
 }
 
-void gctl::ProgressBar::SetStyle(const char* unit_bar_, const char* unit_space_){
+void ProgressBar::SetStyle(const char* unit_bar_, const char* unit_space_){
     
     unit_bar = unit_bar_;
     unit_space = unit_space_;
 }
 
-int gctl::ProgressBar::GetConsoleWidth(){
+int ProgressBar::GetConsoleWidth(){
 
     int width;
 
@@ -50,7 +50,7 @@ int gctl::ProgressBar::GetConsoleWidth(){
     return width;
 }
 
-int gctl::ProgressBar::GetBarLength(){
+int ProgressBar::GetBarLength(){
 
     // get console width and according adjust the length of the progress bar
 
@@ -59,7 +59,7 @@ int gctl::ProgressBar::GetBarLength(){
     return bar_length;
 }
 
-void gctl::ProgressBar::ClearBarField(){
+void ProgressBar::ClearBarField(){
 
     for(int i=0;i<GetConsoleWidth();++i){
         *out << " ";
@@ -67,7 +67,7 @@ void gctl::ProgressBar::ClearBarField(){
     *out << "\r" << std::flush;
 }
 
-void gctl::ProgressBar::Progressed(unsigned long idx_)
+void ProgressBar::Progressed(unsigned long idx_)
 {
     try{
         if(idx_ > n) throw idx_;
