@@ -79,7 +79,10 @@ void ProgressBar::Progressed(unsigned long idx_)
         int bar_size = GetBarLength();
     
         // calculate percentage of progress
-        double progress_percent = idx_* TOTAL_PERCENTAGE/(n-1);
+        double progress_percent;
+        if (n == 1)
+            progress_percent = 100.0;
+        else progress_percent = idx_* TOTAL_PERCENTAGE/(n-1);
 
         // calculate the percentage value of a unit bar 
         double percent_per_unit_bar = TOTAL_PERCENTAGE/bar_size;
