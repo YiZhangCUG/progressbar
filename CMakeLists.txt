@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_COMPILER /usr/local/bin/g++-9)
 # 设置工程名称和语言
 project(PROGRESSBAR VERSION 1.0.0 LANGUAGES CXX)
-# 设置安装地址
-set(CMAKE_INSTALL_PREFIX /usr/local)
+# 设置安装地址 改用homebrew后不再需要
+# set(CMAKE_INSTALL_PREFIX /usr/local)
 # 添加源文件地址
 add_subdirectory(src/)

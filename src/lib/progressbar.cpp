@@ -3,7 +3,10 @@
 ProgressBar::ProgressBar(){}
 
 ProgressBar::ProgressBar(unsigned long n_, const char* description_, std::ostream& out_){
-    
+    Reset(n_, description_, out_);
+}
+
+void ProgressBar::Reset(unsigned long n_, const char *description_, std::ostream& out_){
     n = n_;
     frequency_update = n_;
     description = description_;
@@ -12,11 +15,9 @@ ProgressBar::ProgressBar(unsigned long n_, const char* description_, std::ostrea
     unit_bar = "\u2588";
     unit_space = "-";
     desc_width = std::strlen(description);  // character width of description field
-
 }
 
 void ProgressBar::SetFrequencyUpdate(unsigned long frequency_update_){
-    
     if(frequency_update_ > n){
         frequency_update = n;    // prevents crash if freq_updates_ > n_
     }
@@ -26,7 +27,6 @@ void ProgressBar::SetFrequencyUpdate(unsigned long frequency_update_){
 }
 
 void ProgressBar::SetStyle(const char* unit_bar_, const char* unit_space_){
-    
     unit_bar = unit_bar_;
     unit_space = unit_space_;
 }
@@ -67,8 +67,7 @@ void ProgressBar::ClearBarField(){
     *out << "\r" << std::flush;
 }
 
-void ProgressBar::Progressed(unsigned long idx_)
-{
+void ProgressBar::Progressed(unsigned long idx_){
     try{
         if(idx_ > n) throw idx_;
 
@@ -107,5 +106,4 @@ void ProgressBar::Progressed(unsigned long idx_)
         ClearBarField();
         std::cerr << "PROGRESS_BAR_EXCEPTION: _idx (" << e << ") went out of bounds, greater than n (" << n << ")." << std::endl << std::flush;
     }
-
 }

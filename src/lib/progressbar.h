@@ -8,7 +8,7 @@
 #include <chrono>
 //进度条宏定义
 #define TOTAL_PERCENTAGE 100.0 //!< 设置总的百分比为100%。
-#define CHARACTER_WIDTH_PERCENTAGE 4 //!< 设置每显示一个字符所占的百分比为5%。
+#define CHARACTER_WIDTH_PERCENTAGE 5 //!< 设置每显示一个字符所占的百分比为5%。
 
 /**
  * @brief      终端显示进度条的类。
@@ -20,13 +20,21 @@ public:
 
     ProgressBar(); ///< 类默认的构造函数。
     /**
-     * @brief      类默认的构造函数。
+     * @brief      类的构造函数。
      *
      * @param[in]  n_            整形，进度条循环的最大值。
      * @param[in]  description_  字符串，进度条的名称。
      * @param      out_          输出至标准错误输出，避免在程序输出重定向时无法显示。
      */
     ProgressBar(unsigned long n_, const char *description_="", std::ostream& out_=std::cerr);
+     /**
+     * @brief      初始化进度条，与类的构造函数功能一样。可以重置或者初始化进度条。
+     *
+     * @param[in]  n_            整形，进度条循环的最大值。
+     * @param[in]  description_  字符串，进度条的名称。
+     * @param      out_          输出至标准错误输出，避免在程序输出重定向时无法显示。
+     */
+    void Reset(unsigned long n_, const char *description_="", std::ostream& out_=std::cerr);
     /**
      * @brief      设置进度条刷新次数，默认为进度条的长度，即每次都更新。减少更新的次数可适当的减少在屏幕上打印进度条的时间
      *
@@ -48,7 +56,7 @@ public:
     void Progressed(unsigned long idx_);
 
 private:
-	
+
     unsigned long n;
     unsigned int desc_width;
     unsigned long frequency_update;

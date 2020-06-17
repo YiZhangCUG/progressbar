@@ -39,5 +39,12 @@ int main(int argc, char const *argv[])
 		usleep(1e+5);
 	}
 
+	// 重置进度条
+	bar3.Reset(loop_size, "bar3_reset");
+	for (int i = 0; i < loop_size; i++)
+	{
+		bar3.Progressed(i);
+		usleep(1e+5);
+	}
 	return 0;
 }
